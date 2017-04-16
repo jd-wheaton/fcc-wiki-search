@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>FCC-WIKI-SEARCH: notes</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Titillium Web';
+      font-size: 14px;
+    }
+
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+  <link href="https://cdn.rawgit.com/google/code-prettify/master/src/prettify.css" type="text/css" rel="stylesheet" />
+  <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/marked/lib/marked.js"></script>
+  <script src="../node_modules/google-code-prettify/bin/prettify.min.js"></script>
+  <script src="../node_modules/angular-marked/dist/angular-marked.js"></script>
+</head>
+
+<body ng-app="example-app" ng-controller="MainController">
+
+  <marked>
+    # FCC-WIKI-SEARCH
+    ## A wikipedia search engine challenge on freecodecamp.com
+    I decided to create this application using Angular, release 4.x, the decision to do so was not
+    done lightly as it has involved a significant investment of time and money to aquire this knowledge.
+    I've been fighting with new concepts every inch of this mile. Most probably have no trouble with but
+    this was not for the faint of heart as I've just begun to scratch the surface. I am confident that
+    the finished product will meet my expectations. The skeleton of this project is based loosely off
+    Patrick Stapleton's angular2-webpack-starter RxJS example, and the NG-BOOK2 YouTube Search app.
+    I did not copy this code, it is my own work.
+
+    ### The code breakdown
+
+    1. `SearchResult` object to hold data from each result
+    2. `SearchService` manage the API requests and convert results to streams of type SearchResult[]
+    3. `SearchBoxComponent` calls out to the SearchService while query is typed
+    4. `SearchResultComponent` renders a specific SearchResult
+    5. `SearchComponent` encapsulates app and renders list of results
+    6. `SearchInjectables` environmental constants to be injected
+
+    ## 1. @SearchResult - /app/src/search/search.result.model.ts
+    Object that defines the SearchResult object type is built to match the Wikipedia API.
+    Will need to store the following strings:
+
+    1. id
+    2. linkUrl (`https://en.wikipedia.org/?curid=+id`)
+    3. title
+    4. description
+
+    Will call Wikipedia API with URL:
+    `https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=`
+
+    ```ng generate component search```
+
+    ## 2. @SearchService - /app/src/search/search.service.ts
+    Location of constants that will be injected
+
+    ## 3. @SearchBoxComponent:
+
+    ## 4. @SearchResultComponent:
+
+    ## 5. @SearchComponent
+
+    ## 6. @SearchInjectables - /app/src/search/search.injectables.ts
+    Environmental constants to be injected
+
+  </marked>
+</body>
+
+<script>
+  angular.module('example-app', ['hc.marked'])
+    .config(['markedProvider', function (markedProvider) {
+      markedProvider.setOptions({
+        gfm: true,
+        tables: true,
+        sanitize: true,
+        highlight: function (code, lang) {
+          return lang === 'html' ? code : prettyPrintOne(code);
+        }
+      });
+    }])
+    .controller('MainController', ['$scope', function ($scope) {
+      $scope.my_markdown =
+        "*This* **is** [markdown](https://daringfireball.net/projects/markdown/)\n and `{{ 1 + 2 }}` = {{ 1 + 2 }}";
+    }]);
+
+</script>
+
+</html>
