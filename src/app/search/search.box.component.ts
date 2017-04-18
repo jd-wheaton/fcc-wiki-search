@@ -24,7 +24,7 @@ export class SearchBoxComponent implements OnInit {
     Observable.fromEvent(this.el.nativeElement, 'keyup')
     .map((e: any) => e.target.value)
     .filter((text: string) => text.length > 3)
-    .debounceTime(250)
+    .debounceTime(300)
     .do(() => this.loading.emit(true))
     .map((query: string) => this.wiki.search(query))
     .switch()

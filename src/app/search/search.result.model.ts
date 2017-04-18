@@ -11,6 +11,6 @@ export class SearchResult {
     this.id = obj && obj.id || null;
     this.title = obj && obj.title || null;
     this.description = obj && obj.description || null;
-    this.linkUrl = obj && obj.linkUrl || `https://en.wikipedia.org/?currid=${this.id}`;
+    this.linkUrl = obj && obj.linkUrl || `https://en.wikipedia.org/?curid=${this.id}`;
   }
 }
